@@ -21,10 +21,12 @@ public class ProductService implements ProductIService{
 
     @Override
     public void ReduceQuantity(Long id,Long quantity) {
-        Product product=pr.findById(id).get();
-        if(product.getQuantity()>quantity){
-            product.setQuantity(product.getQuantity()-quantity);
-            pr.save(product);
-        }
+        Product product=pr.findById(id).orElseThrow(RuntimeException::new);
+
+            if(product.getQuantity()<quantity) {
+               throw new RuntimeException();
+            }
+        product.setQuantity(product.getQuantity() - quantity);
+        pr.save(product);
     }
 }
