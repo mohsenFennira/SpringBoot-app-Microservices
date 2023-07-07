@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table(name = "ORDER_DETAILS")
@@ -25,4 +26,26 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private  PaymentMode paymentMode;
     private Long amount;
+    @Embedded
+    private  Productdetails productdetails;
+    @Embedded
+    private  PaymentDetails paymentDetails;
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Embeddable
+    @Builder
+    public static class Productdetails{
+        private String productName;
+        private long price;
+    }
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Embeddable
+    @Builder
+    public static class PaymentDetails{
+        private Instant paymentDate;
+        private String paymentStatus;
+    }
 }

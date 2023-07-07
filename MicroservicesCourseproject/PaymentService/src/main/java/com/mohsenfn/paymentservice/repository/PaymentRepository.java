@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PaymentRepository extends CrudRepository<Payment,Long> {
+    Payment findByOrderId(long orderId);
 }

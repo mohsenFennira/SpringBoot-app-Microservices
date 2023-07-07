@@ -17,4 +17,15 @@ public class PaymentService implements PaymentIService{
         payment.setPaymentStatus("SUCCESS");
         return pr.save(payment);
     }
+
+    @Override
+    public Payment GetPaymentById(Long id) {
+        return pr.findById(id).get();
+    }
+
+    @Override
+    public Payment GetPaymentByOrderId(long orderId) {
+        System.out.println(pr.findByOrderId(orderId));
+        return pr.findByOrderId(orderId);
+    }
 }

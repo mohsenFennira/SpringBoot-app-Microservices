@@ -3,10 +3,7 @@ package com.mohsenfn.paymentservice.controller;
 import com.mohsenfn.paymentservice.entity.Payment;
 import com.mohsenfn.paymentservice.services.PaymentIService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 @RequestMapping("/Payment")
@@ -17,5 +14,9 @@ public class PaymentController {
     @PostMapping
     public Payment DoPayment(@RequestBody Payment payment) {
         return pis.DoPayment(payment);
+    }
+    @GetMapping("order")
+    public Payment GetPaymentByOrderId(@RequestParam long orderId) {
+        return pis.GetPaymentByOrderId(orderId);
     }
 }
