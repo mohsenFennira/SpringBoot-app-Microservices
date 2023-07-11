@@ -11,11 +11,23 @@ public class UserService implements UserIService {
     @Autowired
     UserRepository ur;
     @Autowired
+    JwtService jwtService;
+    @Autowired
     PasswordEncoder passwordEncoder;
     @Override
     public String addUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         ur.save(user);
         return "user added";
+    }
+
+    @Override
+    public String generateToken(String username) {
+        return jwtService.generateToken(username);
+    }
+
+    @Override
+    public void validateToken(String token) {
+        jwtService.validateToken(token);
     }
 }
