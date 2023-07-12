@@ -17,4 +17,8 @@ public class FallBackController {
     public String paymentServiceFallback(){
         return "payment Service is down!";
     }
+    @GetMapping("/authServiceFallBack")
+    public String authServiceFallback(){
+        return "auth Service is down!";
+    }
 }
